@@ -12,3 +12,6 @@ print(top5_per_team[["Team", "Player", "PER"]])
 avg_per_per_team = top5_per_team.groupby("Team")["PER"].mean().reset_index()
 avg_per_per_team.columns = ["Team", "Avg_TOP5_PER"]
 print(avg_per_per_team)
+
+# (Optional) Save to CSV
+avg_per_per_team.to_csv("team_top5_avg_per.csv", index=False)
