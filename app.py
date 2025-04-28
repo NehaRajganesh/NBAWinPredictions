@@ -1,19 +1,14 @@
 import streamlit as st
 import pandas as pd
 
-st.write("""
-# My first app
-Hello *World!*
-""")
-
 # Loading in data
 df = pd.read_csv('/Users/neharajganesh/Desktop/Projects/NBAWinPredictions/data/playoff.csv')
 
-#title
-st.title('NBA Playoff Games Viewer')
+# Title 
+st.markdown("<h1 style='text-align: center; color: #0047AB;'>🏀 NBA Playoff Games Viewer 🏀</h1>", unsafe_allow_html=True)
 
 #Pick a date
-selected_date = st.date_input('Select a playoff game date')
+selected_date = st.date_input('Select a playoff game date:')
 
 # datetime format 
 df['Date'] = pd.to_datetime(df['Date'])
