@@ -11,14 +11,14 @@ st.title("🏀 NBA Game Win Forecaster")
 # ---- Load model ---- #
 @st.cache_resource
 def load_model():
-    return joblib.load('nba_model.pkl')
+    return joblib.load('Models/nba_model.pkl')
 
 model = load_model()
 
 # ---- Load scaler ---- #
 @st.cache_resource
 def load_scaler():
-    return joblib.load('scaler.pkl')
+    return joblib.load('Models/scaler.pkl')
 
 scaler = load_scaler()
 
@@ -27,7 +27,7 @@ scaler = load_scaler()
 @st.cache_data
 def load_team_stats():
     # Example: load average stats from a CSV
-    team_stats = pd.read_csv('full_ts.csv')
+    team_stats = pd.read_csv('data/full_ts.csv')
 
     cols_to_drop = ['3P', '3PA', '2P', '2PA', 'FT', 'FTA', 'Rk_x', 'Rk_y',
         'Unnamed: 0', 'Unnamed: 17', 'Unnamed: 22', 'Unnamed: 27', 'Arena', 'Attend.', 'FT/FGA.1', 'FTr', 'FT/FGA', 'eFG%.1',
@@ -36,7 +36,7 @@ def load_team_stats():
 
     team_stats = team_stats.drop(columns = cols_to_drop)
 
-    last10 = pd.read_csv('nba_last10_win.csv')
+    last10 = pd.read_csv('data/nba_last10_win.csv')
     team_abbreviations = {
     'Atlanta Hawks': 'ATL',
     'Boston Celtics': 'BOS',
@@ -92,6 +92,9 @@ Pick two NBA teams and forecast who is more likely to win based on regular seaso
 teams = team_stats.index.tolist()
 home_team = st.selectbox("Select Home Team", teams)
 visitor_team = st.selectbox("Select Visitor Team", teams)
+
+st.image(f"logos/{home_team}.png", width=100, caption=f"Home: {home_team}")
+st.image(f"logos/{visitor_team}.png", width=100, caption=f"Visitor: {visitor_team}")
 
 if st.button("Predict Winner"):
     if home_team == visitor_team:
