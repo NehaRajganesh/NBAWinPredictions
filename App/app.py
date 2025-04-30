@@ -93,8 +93,8 @@ teams = team_stats.index.tolist()
 home_team = st.selectbox("Select Home Team", teams)
 visitor_team = st.selectbox("Select Visitor Team", teams)
 
-st.image(f"logos/{home_team}.png", width=100, caption=f"Home: {home_team}")
-st.image(f"logos/{visitor_team}.png", width=100, caption=f"Visitor: {visitor_team}")
+st.image(f"NBA/{home_team}.png", width=100, caption=f"Home: {home_team}")
+st.image(f"NBA/{visitor_team}.png", width=100, caption=f"Visitor: {visitor_team}")
 
 if st.button("Predict Winner"):
     if home_team == visitor_team:
